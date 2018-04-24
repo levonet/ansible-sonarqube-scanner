@@ -1,0 +1,46 @@
+galaxy_info:
+  author: Pavlo Bashynskyi
+  description: The SonarQube Scanner is recommended as the default launcher to analyze a project with SonarQube.
+  license: MIT
+
+  min_ansible_version: 2.2
+
+  platforms:
+    - name: Ubuntu
+      versions:
+        - xenial
+        - trusty
+        - precise
+        - yakkety
+        - zesty
+    - name: Debian
+      versions:
+        - wheezy
+        - jessie
+        - stretch
+    - name: EL
+      versions:
+        - 6
+        - 7
+    - name: Fedora
+      versions:
+        - 27
+    - name: opensuse
+      versions:
+        - all
+    - name: SLES
+      versions:
+        - all
+    - name: Darwin
+      versions:
+        - all
+
+  galaxy_tags:
+    - sonarqube
+    - sonarqube-scanner
+    - sonar
+    - sonar-scanner
+    - sonar-scanner-cli
+    - scanner
+
+dependencies: []

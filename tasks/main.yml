@@ -1,0 +1,54 @@
+---
+- name: Set platform for Linux
+  set_fact:
+    platform: linux
+  when: ansible_system == 'Linux'
+
+- name: Set platform for Mac OS X
+  set_fact:
+    platform: macosx
+  when: ansible_os_family == 'Darwin'
+
+- name: Create temporary directory
+  tempfile:
+    state: directory
+    suffix: download
+  register: temp_dir
+
+- name: Download and Install sonar-scanner-cli
+  unarchive:
+    src: "{{ sonar_scanner_mirror }}/sonar-scanner-cli-{{ sonar_scanner_version }}-{{ platform }}.zip"
+    dest: "{{ temp_dir.path }}"
+    remote_src: yes
+
+- name: Set arch_dir
+  set_fact:
+    arch_dir: "{{ temp_dir.path }}/sonar-scanner-{{ sonar_scanner_version }}-{{ platform }}"
+
+- name: get file names to copy
+  find:
+    path: "{{ arch_dir }}"
+    recurse: yes
+    file_type: any
+  register: find_result
+
+- name: Create directories
+  file:
+    path: "{{ item.path | regex_replace(arch_dir,'/usr/local') }}"
+    state: directory
+    mode: "{{ item.mode }}"
+  with_items:
+    - "{{ find_result.files }}"
+  when:
+    - item.isdir
+
+- name: Copy files
+  copy:
+    src: "{{ item.path }}"
+    dest: "{{ item.path | regex_replace(arch_dir,'/usr/local') }}"
+    remote_src: yes
+    mode: "{{ item.mode }}"
+  with_items:
+    - "{{ find_result.files }}"
+  when:
+    - item.isdir == False
