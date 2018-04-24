@@ -9,10 +9,11 @@ Requires the `unzip` utility to be installed on the server.
 
 ## Role Variables
 
-| Variable                | Description | Default      |
-|-------------------------|-------------|--------------|
-| `sonar_scanner_version` | Version     | `3.1.0.1141` |
-| `sonar_scanner_mirror`  | URL         | `https://sonarsource.bintray.com/Distribution/sonar-scanner-cli` |
+| Variable                | Description            | Default      |
+|-------------------------|------------------------|--------------|
+| `sonar_scanner_version` | Version                | `3.1.0.1141` |
+| `sonar_scanner_mirror`  | URL | `https://sonarsource.bintray.com/Distribution/sonar-scanner-cli` |
+| `sonar_scanner_prefix`  | Installation directory | `/usr/local` |
 
 ## Dependencies
 

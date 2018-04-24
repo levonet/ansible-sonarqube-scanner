@@ -25,7 +25,7 @@
   set_fact:
     arch_dir: "{{ temp_dir.path }}/sonar-scanner-{{ sonar_scanner_version }}-{{ platform }}"
 
-- name: get file names to copy
+- name: Get file names to copy
   find:
     path: "{{ arch_dir }}"
     recurse: yes
@@ -34,7 +34,7 @@
 
 - name: Create directories
   file:
-    path: "{{ item.path | regex_replace(arch_dir,'/usr/local') }}"
+    path: "{{ item.path | regex_replace(arch_dir,sonar_scanner_prefix) }}"
     state: directory
     mode: "{{ item.mode }}"
   with_items:
@@ -45,7 +45,7 @@
 - name: Copy files
   copy:
     src: "{{ item.path }}"
-    dest: "{{ item.path | regex_replace(arch_dir,'/usr/local') }}"
+    dest: "{{ item.path | regex_replace(arch_dir,sonar_scanner_prefix) }}"
     remote_src: yes
     mode: "{{ item.mode }}"
   with_items:
