@@ -44,10 +44,14 @@ galaxy_info:
     - name: MacOSX
       versions:
         - all
+  cloud_platforms: []
 
   galaxy_tags:
     - sonarqube
     - sonar
     - scanner
+    - development
+    - monitoring
+    - quality
 
 dependencies: []
