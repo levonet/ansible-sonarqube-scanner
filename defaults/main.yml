@@ -1,5 +1,5 @@
 ---
 # Last versions https://docs.sonarqube.org/display/SCAN/Analyzing+with+SonarQube+Scanner
-sonar_scanner_version: "3.1.0.1141"
+sonar_scanner_version: "3.2.0.1227"
 sonar_scanner_mirror: https://sonarsource.bintray.com/Distribution/sonar-scanner-cli
 sonar_scanner_prefix: /usr/local
